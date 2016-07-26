@@ -20,7 +20,7 @@ public class Hello
 # Variables and Types
 
 c# is statically typed, therefore variables must be declared before using them.
-
+Essentially, C# can handle three types of data, floating point numbers, integer numbers and text
 
 ```
 int myInt = 1;
@@ -329,6 +329,188 @@ public class Hello
 
         Console.WriteLine(sentence);
 
+    }
+}
+```
+
+#For loops
+
+Like java and javascript...
+
+```
+int i;
+
+for( i = 0; i < 10; i++)
+{
+
+}
+```
+can declare the variable in the loop
+```
+for( int i = 0; i < 10; i++)
+```
+loops are used to repeat sections of code a fixed or variable amount of times.
+
+`break;` allows you to exit the loop without finishing the loop
+
+```
+for(int i = 0; i < 16; i++)
+{
+
+    if(i == 12)
+    {
+        break;    
+    }
+}
+```
+`continue;` allows you to skip straight to the next iteration.
+
+```
+for(int i = 0; i < 16; i++)
+{
+
+    if(i % 2 == 1)
+    {
+        continue;
+    }
+
+    Console.WriteLine(i);
+
+}
+```
+##Example
+```
+using System;
+
+public class Functions
+{
+    public static void Main()
+    {
+        string x = "Hi";
+        int n = 10;
+
+        for( int i = 0; i < n; i++)
+        {
+            Console.WriteLine(x);
+        }
+    }
+
+}
+```
+
+#While loops
+
+allow you to continuously repeat a section of code until a condition is met...
+```
+while([conditions to be checked])
+{
+[Code to execute]
+}
+```
+
+This would execute once as N is changed from zero the first time it runs. Unlike for loops, while loops do not allow you to declare or assign the variable used in the conditions.
+
+The same control statements (break and continue) as are used in for loops can also be used in while loops.
+
+
+```
+int n = 0;
+
+while( n == 0)
+{
+    Console.WriteLine("N is 0");
+    n++;
+}
+```
+
+##Example
+```
+using System;
+
+public class Functions
+{
+    public static void Main()
+    {
+        string x = "Hi";
+        int n = 10;
+
+        int i = 0;
+
+        while(i < n)
+        {
+            Console.WriteLine(x);
+            i++;
+        }
+    }
+
+}
+```
+
+#Methods
+
+Methods are portions of a larger program that perform specific tasks
+
+```
+[Modifiers (E.G public or static)] [Type of output] [Name] ( [parameter 1],[parameter 2] ...)
+{
+
+}
+```
+```
+public static int Multiply(int a, int b)
+{
+
+    return a * b;
+
+}
+```
+This method has been passed two parameters, integer a and integer b, this is how you provide input for a subroutine (method).
+
+The return statement stops the subroutine and (depending on the output type) can output a value of the same type as the output type you put at the top
+
+```
+//int is the output type
+
+int Foo()
+{
+
+    //So you return an integer
+    return 0;
+
+}
+```
+use `void` when you do not need to return a value.
+```
+void Foo()
+{
+
+    //the output type is void, so you don't return a value
+    return;
+
+}
+
+```
+
+In this case the return statement simply stops the subroutine and does not give any output
+
+#Example
+```
+using System;
+
+public class Methods
+{
+    public static void Main()
+    {
+
+        int x = 2;
+        int y = 2;
+        int a = Foo(x,y);
+        Console.WriteLine(a);
+
+    }
+	public static int Foo(int a, int b)
+    {
+        return a / b;
     }
 }
 ```
