@@ -527,7 +527,7 @@ This allows us to repeat a chunk of code until the condition at the end becomes 
 do
           statement or block
     while (condition) ;
-    ```
+```
 
 ##while loop
 
@@ -537,6 +537,7 @@ do
 ```
 
 ##for loop
+
 ```
   for ( setup ; finish test ; update )
 {
@@ -544,6 +545,7 @@ things we want to do a given
           number of times
     }
 ```
+
 ```
 using System;
     class ForLoop
