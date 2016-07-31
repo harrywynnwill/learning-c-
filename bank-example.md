@@ -642,3 +642,137 @@ to get around having to make properties public we use getter and setter methods,
   }
 }
 ```
+#Delegates Progs and Lambdas??
+
+“A way of telling a piece of program what to do when something happens”
+A delegate is a type safe reference to a method in a class.
+
+
+`public delegate decimal CalculateFee (decimal balance);`
+
+
+```
+public decimal RipoffFee (decimal balance)
+{
+       if ( balance < 0 )
+       {      
+        return 100; }
+        else
+        {
+        return 1;
+        }
+}
+```
+`CalculateFee calc = new CalculateFee (RipoffFee);`
+`fees = calc(100);`
+
+#Storing in an Array
+
+```
+private IAccount [] accounts ;
+public ArrayBank( int bankSize )
+{
+    accounts = new IAccount[bankSize];
+}
+```
+
+`IBank friendlyBank = new ArrayBank (50);`
+
+#Adding to an array
+```
+public bool StoreAccount (IAccount account)
+{
+    int position = 0;
+    for (position = 0; position<accounts.Length; position++)
+    {
+        if (accounts[position] == null)
+        {
+            accounts[position] = account;
+            return true;
+        }
+      }         
+    return false;
+}
+```
+This method works through the array looking for an element containing null. If it finds one it sets this to refer to the account it has been asked to store and then returns true. If it does not find a null element before it reaches the end of the array it returns false to indicate that the store has failed.
+
+FindAccount which will find the account which matches a particular customer name:
+`IAccount fetchedAccount = arrayBank.FindAccount("Rob");`
+
+This will either return the account with the required name, or null if the account cannot be found. In the array based implementation of the bank this is achieved by means of a simple search:
+```
+public IAccount FindAccount ( string name )
+{
+    int position=0 ;
+    for (position=0 ; position<accounts.Length ; position++)
+    {
+        if ( accounts[position] == null )
+        {
+        continue;
+        }
+        if ( accounts[position].GetName() == name )
+        {
+            return accounts[position];
+        }
+      }
+    return null;
+}
+  ```
+
+#Hash table
+found in System.Collections
+
+```
+ class HashBank : IBank
+{
+  Hashtable bankHashtable = new Hashtable();
+  public IAccount FindAccount(string name)
+  {
+      return bankHashtable[name] as IAccount;
+  }
+  public bool StoreAccount(IAccount account)
+  {
+      bankHashtable.Add(account.GetName(), account);
+      return true;
+  }
+}
+```
+
+provides the `.Add` method
+
+We have to use the "as" part of this code as the collection will return a reference to an object. We want to return a reference to an instance which implements the IAccount interface.
+
+
+#Advanced programming
+
+#ArrayList
+
+cousin of HashTable
+
+used when dont know the size of the Array...
+
+`ArrayList store = new ArrayList();`
+
+and to add to it... `.Add`
+
+`store.Add(robsAccount);`
+
+Accessing items from an ArrayList
+
+The designers of the ArrayList class had no idea precisely what type of object a programmer will want to use it with and so they had to use the object reference.
+
+This is not actually a huge problem, because a program can use a cast to change the type of the item the arraylist returns:
+
+```
+    Account a = (Account) store[0];
+    a.PayInFunds(50);
+```
+
+Array list is not typesafe, can Add any object to it!
+
+a really useful Remove behaviour. This is given a reference to the thing to be removed:
+
+    `store.Remove(robsAccount);`
+
+    `.Count` tells you the size of the ArrayList
+    `.Contains` checks to see if the Arraylist contains a particular refernece
